@@ -7,7 +7,7 @@ namespace ShipShoot
      class PlayerSprite : Sprite
     {
         float speed = 200;
-        string Gamer = "Hey Gamer";
+
         public PlayerSprite(Texture2D newTxr, Vector2 newPos) : base(newTxr, newPos)
         {
 
