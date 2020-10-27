@@ -49,3 +49,10 @@
 /processorParam:TextureFormat=Color
 /build:saucer.png
 
+#begin uifont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:uifont.spritefont
+
