@@ -7,6 +7,7 @@ namespace ShipShoot
      class PlayerSprite : Sprite
     {
         float speed = 200;
+        public int playerLives = 3;
 
         public PlayerSprite(Texture2D newTxr, Vector2 newPos) : base(newTxr, newPos)
         {
@@ -27,5 +28,6 @@ namespace ShipShoot
             spritePos = Vector2.Clamp(spritePos, new Vector2(), new Vector2(screenSize.X - spriteTexture.Width, screenSize.Y - spriteTexture.Height));
 
         }
-    }
+
+    }   
 }
