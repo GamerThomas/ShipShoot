@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -23,6 +24,9 @@ namespace ShipShoot
 
         Point screenSize = new Point(800,450);
         Texture2D backgroundTxr, missileTxr, saucerTxr,particleTxr;
+        SoundEffect shipEx, missileEx;
+
+        float playTime = 0;
 
         float missileTime = 2;
         public Game1()
@@ -51,7 +55,8 @@ namespace ShipShoot
             uiFont = Content.Load<SpriteFont>("uifont");
             bigFont = Content.Load<SpriteFont>("bigFont");
             particleTxr = Content.Load<Texture2D>("particle");
-
+            shipEx = Content.Load<SoundEffect>("shipExplode");
+            missileEx = Content.Load<SoundEffect>("missileExplode");
             backgroundSprite = new Sprite(backgroundTxr, new Vector2(0, 0));
             playerSprite = new PlayerSprite(saucerTxr, new Vector2(screenSize.X/6,screenSize.Y/2));
         }
@@ -63,20 +68,22 @@ namespace ShipShoot
 
             Random rng = new Random();
 
-            if (playerSprite.playerLives >0 && missileTime > 0)
+            if (playerSprite.playerLives > 0 && missileTime > 0)
             {
                 missileTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
             }
-            else if (playerSprite.playerLives > 0 && missileSprite.Count < 5)
+            else if (playerSprite.playerLives > 0 && missileSprite.Count < (Math.Min(playTime, 120f)/120f)*8 +2)
             {
-                missileSprite.Add(new Missile(missileTxr, new Vector2(screenSize.X, rng.Next(0, screenSize.Y - missileTxr.Height))));
+                missileSprite.Add(new Missile(missileTxr, new Vector2(screenSize.X, rng.Next(0, screenSize.Y - missileTxr.Height)),(Math.Min(playTime, 120f)/120f * 20000f + 200f)));
                 missileTime = (float)(rng.NextDouble() + 0.5f);
             }
-
-            playerSprite.Update(gameTime, screenSize);
-
+            if (playerSprite.playerLives > 0)
+            { 
+                playerSprite.Update(gameTime, screenSize);
+                playTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
             foreach (Missile missile in missileSprite)
             {
                  missile.Update(gameTime, screenSize);
@@ -85,7 +92,15 @@ namespace ShipShoot
                     for(int i = 0; i < 16; i++)particleList.Add(new particleSprite(particleTxr, new Vector2(missile.spritePos.X + (missileTxr.Width / 2) - (particleTxr.Width / 2),missile.spritePos.Y + (missileTxr.Height /2 )- (particleTxr.Height / 2 ))));
                     missile.dead = true;
                     playerSprite.playerLives--;
+                    missileEx.Play();
+                    if (playerSprite.playerLives <= 0)
+                    {
+                        shipEx.Play();
+                        for (int i = 0; i < 32; i++) particleList.Add(new particleSprite(particleTxr, new Vector2(playerSprite.spritePos.X + (saucerTxr.Width / 2) - (particleTxr.Width / 2), playerSprite.spritePos.Y + (saucerTxr.Height / 2) - (particleTxr.Height / 2))));
+                    }
                 }
+
+
             }
 
             foreach (particleSprite particle in particleList) particle.Update(gameTime, screenSize);
@@ -114,6 +129,10 @@ namespace ShipShoot
             _spriteBatch.DrawString(uiFont, "Lives: "+playerSprite.playerLives, new Vector2(12, 12), Color.Black);
 
             _spriteBatch.DrawString(uiFont, "Lives: " + playerSprite.playerLives, new Vector2(10, 10), Color.White);
+
+            _spriteBatch.DrawString(uiFont, "Time: " + Math.Round(playTime), new Vector2(10, 32), Color.Black);
+
+            _spriteBatch.DrawString(uiFont, "Time: " + Math.Round(playTime), new Vector2(10, 30), Color.White);
 
             if (playerSprite.playerLives <= 0)
             {

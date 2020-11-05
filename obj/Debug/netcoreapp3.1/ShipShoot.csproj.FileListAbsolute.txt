@@ -27,3 +27,5 @@ C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\obj\Debug\netcoreapp3.1\ShipShoot
 C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\bin\Debug\netcoreapp3.1\Content\uifont.xnb
 C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\bin\Debug\netcoreapp3.1\Content\bigFont.xnb
 C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\bin\Debug\netcoreapp3.1\Content\particle.xnb
+C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\bin\Debug\netcoreapp3.1\Content\missileExplode.xnb
+C:\Users\PCLT\source\repos\ShipShoot\ShipShoot\bin\Debug\netcoreapp3.1\Content\shipExplode.xnb

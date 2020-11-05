@@ -7,11 +7,15 @@
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/backG.png</File>
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/bigFont.spritefont</File>
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/missile2.png</File>
+    <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/missileExplode.wav</File>
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/particle.png</File>
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/saucer.png</File>
+    <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/shipExplode.wav</File>
     <File>C:/Users/PCLT/source/repos/ShipShoot/ShipShoot/Content/uifont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
